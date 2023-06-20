@@ -13,7 +13,7 @@ const PageTemplate: FC<Props> = ({ children, title }) => {
       <Head>
         <title>{title ?? "Matej Vykoukal"}</title>
       </Head>
-      <div className="min-h-screen bg-gradient-to-tr dark:from-neutral-800 dark:to-neutral-950 dark:text-white">
+      <div className="min-h-screen bg-gradient-to-tr from-neutral-50 to-neutral-100 dark:from-neutral-800 dark:to-neutral-950 dark:text-white">
         <Navbar />
         <main>{children}</main>
       </div>
