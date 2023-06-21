@@ -11,8 +11,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={classNames("sticky top-0 z-10 p-4 dark:border-slate-100/20", {
-        "border-b bg-white/40 backdrop-blur  dark:bg-neutral-900/80 ":
+      className={classNames("sticky top-0 z-10 p-4  border-b border-transparent transition-colors duration-500", {
+        " bg-white/40 dark:border-slate-100/20 backdrop-blur  dark:bg-neutral-900/50 ":
           isScrolled,
       })}
     >

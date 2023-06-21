@@ -1,21 +1,38 @@
 import PageTemplate from "~/components/PageTemplate";
 import Lottie, { type LottieRef } from "lottie-react";
 import codingAnimation from "~/../public/coding_animation.json";
+import wawingHandsAnimation from "~/../public/waving_hands_animation.json";
+import githubProfile from "~/../public/github_matej.png";
+import githubProfileLight from "~/../public/github_matej_light.png";
 import { useRef } from "react";
 import TypingAnimation from "~/components/TypingAnimation";
 import Link from "next/link";
+import Image from "next/image";
+import { useLocalStorage } from "@mantine/hooks";
+import { type ColorScheme } from "~/types/global.types";
+import classNames from "classnames";
+import { sleep } from "~/utils/time";
 
 export default function Home() {
-  const lottieRef: LottieRef = useRef(null);
+  const codingAnimationRef: LottieRef = useRef(null);
+  const wawingHandAnimationRef: LottieRef = useRef(null);
 
-  lottieRef.current?.setSpeed(1.2);
+  const [colorScheme] = useLocalStorage<ColorScheme>({
+    key: "color-scheme",
+    defaultValue: "dark",
+  });
+
+  codingAnimationRef.current?.setSpeed(1.2);
+  wawingHandAnimationRef.current?.setSpeed(2);
 
   const links = [
-    { name: "Portfolio", href: "https://github.com/MatejVykoukal" },
+    { name: "Portfolio", href: "https://github.com/MatejVykoukal", external: true },
     {
       name: "Pubic profile",
       href: "https://www.linkedin.com/in/mat%C4%9Bj-vykoukal-159b131a9/",
+      external: true,
     },
+    { name: "Read more", href: "#about-me"}
   ];
   const stats = [
     { name: "Years of Experience", value: "5+" },
@@ -23,6 +40,15 @@ export default function Home() {
     { name: "Hours per week", value: "40" },
     { name: "Enthusiasm", value: "Unlimited" },
   ];
+
+  const handleWawingAnimationComplete = async () => {
+     if(Math.random() > 0.5){
+      wawingHandAnimationRef.current?.stop();
+      await sleep(2000)
+      wawingHandAnimationRef.current?.setSpeed(2);
+      wawingHandAnimationRef.current?.play();
+    }
+  }
 
   return (
     <PageTemplate>
@@ -45,7 +71,7 @@ export default function Home() {
       >
         <div className="flex flex-col items-center justify-center gap-10 lg:flex-row-reverse">
           <Lottie
-            lottieRef={lottieRef}
+            lottieRef={codingAnimationRef}
             className=" max-w-[200px] flex-grow lg:max-w-[500px]"
             animationData={codingAnimation}
             loop={true}
@@ -85,9 +111,8 @@ export default function Home() {
               </p>
             </div>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
-              <button className="rounded-full bg-primary-500 px-4 py-1 text-lg text-white hover:bg-primary-600">
-                Contact me
-              </button>
+              
+              <a className="inline-flex justify-center rounded-full text-sm font-semibold py-3 px-4 bg-primary-500 dark:bg-primary-500/10 border dark:border-blue-800 text-white dark:hover:border-transparent dark:hover:bg-primary-500/80 transition-colors duration-300" href="/preview"><span>Contact <span aria-hidden="true" className="sm:inline">→</span></span></a>
               <Link
                 className="text-base font-semibold leading-7 "
                 href="#about-me"
@@ -114,7 +139,7 @@ export default function Home() {
           <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7  sm:grid-cols-2 md:flex lg:gap-x-10">
               {links.map((link) => (
-                <a key={link.name} target="_blank" href={link.href}>
+                <a key={link.name} href={link.href} {... link.external ? {target: "_blank"} : {}}>
                   {link.name} <span aria-hidden="true">&rarr;</span>
                 </a>
               ))}
@@ -133,6 +158,131 @@ export default function Home() {
             </dl>
           </div>
         </div>
+      </section>
+      <section>
+        <div className="relative isolate overflow-hidden  px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+          <div className="absolute inset-0 -z-10 overflow-hidden">
+            <svg
+              className="absolute left-[max(50%,25rem)] top-0 h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-200 dark:stroke-neutral-700/20 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]"
+              aria-hidden="true"
+            >
+              <defs>
+                <pattern
+                  id="e813992c-7d03-4cc4-a2bd-151760b470a0"
+                  width={200}
+                  height={200}
+                  x="50%"
+                  y={-1}
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path d="M100 200V.5M.5 .5H200" fill="none" />
+                </pattern>
+              </defs>
+              <svg x="50%" y={-1} className="overflow-visible fill-gray-50 dark:fill-neutral-800/50">
+                <path
+                  d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z"
+                  strokeWidth={0}
+                />
+              </svg>
+              <rect width="100%" height="100%" strokeWidth={0} fill="url(#e813992c-7d03-4cc4-a2bd-151760b470a0)" />
+            </svg>
+          </div>
+          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
+            <div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+              <div className="lg:pr-4">
+                <div className="lg:max-w-lg">
+                  <p className="text-base font-semibold leading-7 text-primary-600 relative">
+                    My expertise 
+                  </p>
+                  <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white  sm:text-4xl relative">
+                    Who am I ?
+                    <Lottie
+                      className=" max-w-[100px] left-40 -z-10 bottom-0 absolute opacity-50"
+                      animationData={wawingHandsAnimation}
+                      loop={true}
+                      onLoopComplete={() => void handleWawingAnimationComplete()}
+                      lottieRef={wawingHandAnimationRef}
+                    />
+                 
+                  </h1>
+                  <p className="mt-6 text-xl leading-8 text-gray-700 dark:text-gray-300 dark:text">
+                    I am experienced in building web applications using modern technologies such as Next.js, Typescript, tRPC, Prisma, TailwindCSS and many more.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="-ml-12 -mt-12 p-12 lg:sticky lg:top-10 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
+              <div className="w-[48rem] max-w-none aspect-video  rounded-xl  overflow-hidden relative dark:bg-gray-900 shadow-xl sm:w-[57rem]">
+                <Image
+
+                  src={githubProfile}
+                  fill
+                  className={classNames("object-cover  rounded-xl opacity-0 transition-opacity ease-linear duration-300", { 'opacity-100': colorScheme === "dark" })}
+                  alt=""
+                />  <Image
+                  src={githubProfileLight} fill
+                  className={classNames("object-cover rounded-xl opacity-0 transition-opacity ease-linear duration-300", { 'opacity-100': colorScheme === "light" })}
+                  alt="" />
+              </div>
+            </div>
+            <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+              <div className="lg:pr-4">
+                <div className="max-w-xl text-base leading-7 text-gray-700 dark:text-gray-300 lg:max-w-lg">
+                  <ul role="list" className="space-y-8 text-gray-600 dark:text-gray-300">
+                    <li className="flex gap-x-3">
+                      <span>
+                        <strong className="font-semibold text-gray-900 dark:text-white">Beginnings.</strong> I started programming when I was 15 years old. I started with HTML, CSS and Vanilla Javascript courses on Udemy. I was learning for about 2 years. In the meantime I started working on my first projects. I was building client applications using React and Node.js(build & development). I was learning about Javascript Ecosystem, how internet communication works and overall building my knowledge about web development.
+                      </span>
+                    </li>
+                    <li className="flex gap-x-3">
+                      <span>
+                        <strong className="font-semibold text-gray-900 dark:text-white">Server Side.</strong> My first server-side technology/language was PHP. I was working with Wordpress and creating custom themes using PHP and CSS. I also started touching Databases and learned a bit of SQL. I was utilizing those skills in building websites for relatives and local businesses.
+                      </span>
+                    </li>
+                    <li className="flex gap-x-3">
+                      <span>
+                        <strong className="font-semibold text-gray-900 dark:text-white">Hardening Frontend Skills.</strong> In 2021, after high-school, I got my first full-time programming job as a Junior Frontend Developer at {' '}
+                        <a
+                          href="https://www.linkedin.com/company/actumdigital/"
+                          target="_blank"
+                          className="text-primary-500"
+                        >
+                          Actum Digital
+                        </a>. I started learning about Web Accesibility and completed Web Accesibilty Course with certificate at {' '}
+                         <a
+                          href="https://dequeuniversity.com/"
+                          target="_blank"
+                          className="text-primary-500"
+                        >
+                          Deque University
+                        </a>. I was working mostly with React & Typescript. I build a strong foundation in those technologies.
+                      </span>
+                    </li>
+                    <li className="flex gap-x-3">
+                      <span>
+                        <strong className="font-semibold text-gray-900 dark:text-white">Fullstack. </strong>Next year I dove into the world of Fullstack development. I was developing many personal projects such as messaging app, note taking app, social app clone, etc. to learn more about backend development. I remained in JavaScript ecosystem and started using Node.js, Express.js and MongoDB, Firebase. I was focused on interconnecting Frontend and Backend code, so I learned alot about type-safe APIs(tRPC), type-safe database queries(Prisma), client-side rendering vs server-side rendering, caching and many more.
+                      </span>
+                    </li>
+                    <li className="flex gap-x-3">
+                      <span>
+                        <strong className="font-semibold text-gray-900 dark:text-white">Fullstack+ </strong>Currently I work for{" "}    
+                        <a
+                          href="https://www.linkedin.com/company/walletapp/mycompany/"
+                          target="_blank"
+                          className="text-primary-500"
+                        >
+                          BudgetBakers
+                        </a>. Where I focus on developing high quality, safe and accessible web applications. I am expanding my knowledge mostly about Backend development, DevOps and Web Security. Also in my spare time I am learning about AI technologies and creating ways to integrate those technologies into development process and make it more efficient. 
+                      </span>
+                    </li>
+                  </ul>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </section>
     </PageTemplate>
   );
