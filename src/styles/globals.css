@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html{
+@apply scroll-smooth
+}
+
 nav + * * {
   @apply scroll-mt-20;
 }
