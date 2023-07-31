@@ -12,6 +12,7 @@ const PageTemplate: FC<Props> = ({ children, title }) => {
     <>
       <Head>
         <title>{title ?? "Matej Vykoukal"}</title>
+        <link rel="shortcut icon" href="/logo.svg" />
       </Head>
       <div className="min-h-screen bg-gradient-to-tr from-neutral-50 to-neutral-100 dark:from-neutral-800 dark:to-neutral-950 dark:text-white">
         <Navbar />
