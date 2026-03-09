@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 
 export default function CVPage() {
   return (
@@ -18,18 +19,18 @@ export default function CVPage() {
               </p>
             </div>
             <div className="flex gap-3">
-              <a
+              <Link
                 className="rounded-full bg-neutral-900 px-4 py-2 text-sm font-semibold text-white"
                 href="/api/cv"
               >
                 Download PDF
-              </a>
-              <a
+              </Link>
+              <Link
                 className="rounded-full border border-neutral-300 px-4 py-2 text-sm font-semibold"
                 href="/"
               >
                 Back to site
-              </a>
+              </Link>
             </div>
           </div>
 

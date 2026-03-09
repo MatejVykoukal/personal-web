@@ -13,11 +13,11 @@ import { type ColorScheme } from "~/types/global.types";
 import classNames from "classnames";
 import { sleep } from "~/utils/time";
 import Footer from "~/components/Footer";
+import Link from "next/link";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 const tech = ["Next.js", "TypeScript", "React"];
-
 
 const projects = [
   {
@@ -49,7 +49,13 @@ const projects = [
 const skillGroups = [
   {
     title: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "State Management", "Accessibility"],
+    items: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "State Management",
+      "Accessibility",
+    ],
   },
   {
     title: "Architecture",
@@ -177,16 +183,13 @@ export default function Home() {
             </div>
             <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-300 lg:justify-start">
               {tech.map((item) => (
-                <span
-                  key={item}
-                  className={accentPillClass}
-                >
+                <span key={item} className={accentPillClass}>
                   {item}
                 </span>
               ))}
             </div>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
-              <a
+              <Link
                 className="inline-flex justify-center rounded-full border bg-primary-500 px-4 py-3 text-sm font-semibold text-white transition-colors duration-300 dark:border-blue-800 dark:bg-primary-500/10 dark:hover:border-transparent dark:hover:bg-primary-500/80"
                 href="/api/cv"
               >
@@ -196,7 +199,7 @@ export default function Home() {
                     →
                   </span>
                 </span>
-              </a>
+              </Link>
               <a
                 className="text-base font-semibold leading-7 text-white/80 transition hover:text-white"
                 href="https://github.com/MatejVykoukal"
@@ -357,7 +360,7 @@ export default function Home() {
         </div>
       </section>
 
-<section
+      <section
         id="projects"
         className="relative mt-10 overflow-hidden py-24 sm:py-32 lg:mt-32"
       >
@@ -479,11 +482,7 @@ export default function Home() {
                         />
                       </div>
                     ) : (
-                      <div
-                        className={`flex h-11 w-11 items-center justify-center rounded-full border text-sm font-semibold ${role.logo.className}`}
-                      >
-                        {role.logo.text}
-                      </div>
+                      <></>
                     )}
                     <div>
                       <h3 className="text-xl font-semibold text-white">
@@ -544,12 +543,12 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex flex-col items-start gap-4 lg:items-end lg:pt-6">
-                <a
+                <Link
                   className="inline-flex justify-center rounded-full border bg-primary-500 px-4 py-3 text-sm font-semibold text-white transition-colors duration-300 dark:border-blue-800 dark:bg-primary-500/10 dark:hover:border-transparent dark:hover:bg-primary-500/80"
                   href="/api/cv"
                 >
                   Get CV
-                </a>
+                </Link>
                 <a
                   className="text-base font-semibold leading-7 text-white/80 transition hover:text-white"
                   href="https://github.com/MatejVykoukal"
