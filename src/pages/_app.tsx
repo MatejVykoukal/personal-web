@@ -2,14 +2,22 @@ import { type AppType } from "next/app";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
 
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 
-// If loading a variable font, you don't need to specify the font weight
-const inter = Inter({ subsets: ["latin"] });
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <div className={inter.className}>
+    <div
+      className={`${plusJakartaSans.variable} ${spaceGrotesk.variable} font-sans`}
+    >
       <Component {...pageProps} />
     </div>
   );
