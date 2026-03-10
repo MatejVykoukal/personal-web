@@ -9,22 +9,54 @@ import {
   Image,
 } from "@react-pdf/renderer";
 import path from "path";
+import fs from "fs";
 
 const avatarSrc = path.resolve(process.cwd(), "public", "me-avatar.jpg");
 
-Font.register({
-  family: "Arial",
-  fonts: [
-    {
-      src: "/System/Library/Fonts/Supplemental/Arial.ttf",
-      fontWeight: 400,
-    },
-    {
-      src: "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
-      fontWeight: 700,
-    },
-  ],
-});
+const fontDir = path.resolve(process.cwd(), "public", "fonts");
+
+const resolveFont = (candidates: string[]) => {
+  for (const filename of candidates) {
+    const fullPath = path.join(fontDir, filename);
+    if (fs.existsSync(fullPath)) {
+      return fullPath;
+    }
+  }
+  return null;
+};
+
+const regularFont = resolveFont([
+  "Inter-Regular.ttf",
+  "Inter_24pt-Regular.ttf",
+  "Inter-24pt-Regular.ttf",
+  "Inter_28pt-Regular.ttf",
+  "Inter-28pt-Regular.ttf",
+  "Inter_18pt-Regular.ttf",
+  "Inter-18pt-Regular.ttf",
+]);
+
+const boldFont = resolveFont([
+  "Inter-Bold.ttf",
+  "Inter_24pt-Bold.ttf",
+  "Inter-24pt-Bold.ttf",
+  "Inter_28pt-Bold.ttf",
+  "Inter-28pt-Bold.ttf",
+  "Inter_18pt-Bold.ttf",
+  "Inter-18pt-Bold.ttf",
+]);
+
+let baseFontFamily = "Helvetica";
+
+if (regularFont && boldFont) {
+  Font.register({
+    family: "Inter",
+    fonts: [
+      { src: regularFont, fontWeight: 400 },
+      { src: boldFont, fontWeight: 700 },
+    ],
+  });
+  baseFontFamily = "Inter";
+}
 
 const profile = {
   name: "Matěj Vykoukal",
@@ -108,7 +140,7 @@ const styles = StyleSheet.create({
   page: {
     padding: 30,
     fontSize: 10.5,
-    fontFamily: "Arial",
+    fontFamily: baseFontFamily,
     color: "#0f172a",
     lineHeight: 1.35,
   },
