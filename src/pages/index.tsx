@@ -174,9 +174,10 @@ export default function Home() {
                 >
                   BudgetBakers
                 </a>{" "}
-                leading frontend work across Wallet and internal SaaS tools.
+                leading frontend work across Wallet, Board and internal SaaS
+                tools.
               </p>
-              <p className="mt-4 text-sm text-gray-400">
+              <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
                 5+ years of experience across product and client-facing web
                 platforms.
               </p>
@@ -201,7 +202,9 @@ export default function Home() {
                 </span>
               </Link>
               <a
-                className="text-base font-semibold leading-7 text-white/80 transition hover:text-white"
+                className="text-base font-semibold leading-7 text-gray-500 transition hover:text-gray-900 
+                dark:text-white/80 dark:hover:text-white 
+                "
                 href="https://github.com/MatejVykoukal"
                 target="_blank"
                 rel="noreferrer"
@@ -209,7 +212,9 @@ export default function Home() {
                 GitHub →
               </a>
               <a
-                className="text-base font-semibold leading-7 text-white/80 transition hover:text-white"
+                className="text-base font-semibold leading-7 text-gray-500 transition hover:text-gray-900
+                dark:text-white/80 dark:hover:text-white
+                "
                 href="https://www.linkedin.com/in/mat%C4%9Bj-vykoukal-159b131a9/"
                 target="_blank"
                 rel="noreferrer"
@@ -313,10 +318,13 @@ export default function Home() {
             <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
               <div className="lg:pr-4">
                 <div className="max-w-xl text-base leading-7 text-gray-700 dark:text-gray-300 lg:max-w-lg">
-                  <ul role="list" className="space-y-6 text-gray-300">
+                  <ul
+                    role="list"
+                    className="space-y-6 text-gray-700 dark:text-gray-300"
+                  >
                     <li className="flex gap-x-3">
                       <span>
-                        <strong className="font-semibold text-white">
+                        <strong className="font-semibold dark:text-white">
                           Product-first frontend.
                         </strong>{" "}
                         I translate product goals into fast, reliable
@@ -326,7 +334,7 @@ export default function Home() {
                     </li>
                     <li className="flex gap-x-3">
                       <span>
-                        <strong className="font-semibold text-white">
+                        <strong className="font-semibold dark:text-white">
                           Accessibility & quality.
                         </strong>{" "}
                         I build with WCAG-aligned patterns, keyboard support,
@@ -335,7 +343,7 @@ export default function Home() {
                     </li>
                     <li className="flex gap-x-3">
                       <span>
-                        <strong className="font-semibold text-white">
+                        <strong className="font-semibold dark:text-white">
                           Frontend architecture.
                         </strong>{" "}
                         Design systems, component governance, and predictable
@@ -345,7 +353,7 @@ export default function Home() {
                     </li>
                     <li className="flex gap-x-3">
                       <span>
-                        <strong className="font-semibold text-white">
+                        <strong className="font-semibold dark:text-white">
                           Collaboration.
                         </strong>{" "}
                         I work closely with product, design, and backend to
@@ -384,17 +392,19 @@ export default function Home() {
                 key={project.name}
                 className="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-lg shadow-black/5 backdrop-blur transition-colors duration-300 hover:border-primary-500/50"
               >
-                <div className="flex items-center justify-between text-xs uppercase tracking-wider text-gray-400">
+                <div className="flex items-center justify-between text-xs uppercase tracking-wider text-gray-600 dark:text-gray-400">
                   <span>{project.company}</span>
                   <span>Case Study</span>
                 </div>
-                <h3 className="mt-3 text-2xl font-semibold text-white">
+                <h3 className="mt-3 text-2xl font-semibold dark:text-white">
                   {project.name}
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-gray-300">
+                <p className="mt-3 text-sm leading-7 text-gray-600 dark:text-gray-300">
                   {project.description}
                 </p>
-                <p className="mt-4 text-sm text-gray-400">{project.role}</p>
+                <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+                  {project.role}
+                </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span key={tag} className={accentPillClass}>
@@ -427,9 +437,9 @@ export default function Home() {
             {skillGroups.map((group) => (
               <div
                 key={group.title}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6"
+                className="rounded-2xl border border-black/10 p-6 dark:border-white/10 dark:bg-white/5"
               >
-                <h3 className="text-lg font-semibold text-white">
+                <h3 className="text-lg font-semibold dark:text-white">
                   {group.title}
                 </h3>
                 <div className="mt-4 flex flex-wrap gap-2">
@@ -464,12 +474,12 @@ export default function Home() {
             {experience.map((role) => (
               <div
                 key={role.company}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6"
+                className="rounded-2xl border border-black/10 p-6 dark:border-white/10 dark:bg-white/5"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div className="flex items-center gap-4">
                     {typeof role.logo === "string" ? (
-                      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/10 text-sm font-semibold text-white">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/10 text-sm font-semibold dark:text-white">
                         {role.logo}
                       </div>
                     ) : role.logo.src ? (
@@ -485,17 +495,21 @@ export default function Home() {
                       <></>
                     )}
                     <div>
-                      <h3 className="text-xl font-semibold text-white">
+                      <h3 className="text-xl font-semibold dark:text-white">
                         {role.company}
                       </h3>
-                      <p className="text-sm text-gray-400">{role.role}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {role.role}
+                      </p>
                     </div>
                   </div>
-                  <span className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs text-gray-200">
+                  <span className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs dark:text-gray-200">
                     {role.period}
                   </span>
                 </div>
-                <p className="mt-4 text-sm text-gray-300">{role.summary}</p>
+                <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                  {role.summary}
+                </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {role.projects.map((project) => (
                     <span key={project} className={accentPillClass}>
@@ -525,7 +539,7 @@ export default function Home() {
                   Open to senior frontend roles, product collaborations, or
                   advisory work. Reach out and I&apos;ll respond quickly.
                 </p>
-                <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-300">
+                <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-500 dark:text-gray-300">
                   <a
                     className="transition-colors duration-300 hover:text-primary-400"
                     href="mailto:matej.vykoukal248@gmail.com"
